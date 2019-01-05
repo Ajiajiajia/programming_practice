@@ -1,5 +1,7 @@
 package club.ajiajia.programming.datastructure.linkedlist;
 
+import java.util.List;
+
 /**
  * 基本链表实现
  * @author ajiajia
@@ -30,6 +32,8 @@ public class LinkedListImpl implements LinkedList {
         // 3. 找到尾部, 可以把walker想象成一个游标
         Node walker = head;
         // 想想为什么不能用 walker != null 判断？
+        // 因为我是要在本节点的下一节点进行插入
+        // 但我认为walker != null 判断不是不可以，只是要做的步骤多了一点，在Node的类里面还需要加入 getbefore()函数，如果检测到本节点为空的时候，就设置 walker.getbefore().setNext(node)
         while (walker.getNext() != null) {
             // 只要walker的后一个节点不为空，就说明walker还没有移动到尾节点，继续向后移动
             walker = walker.getNext();
@@ -38,20 +42,58 @@ public class LinkedListImpl implements LinkedList {
         walker.setNext(node);
     }
 
-    public void remove(int index) {
+    public void insert(int index, int val) {
+        if (head == null){
+            System.out.println("发生错误，当前链表头结点为空！");
+            return;
+        }
+        Node number = new Node();
+        number.setValue(val);
+        int j = 1;
+        Node walker = head;
+        while(walker.getNext() != null && j < index){
+            walker = walker.getNext();
+            j++;
+        }
+        number.setNext(walker.getNext());
+        walker.setNext(number);
+    }
 
+    public void remove(int index) {
+        if (head == null){
+            System.out.println("发生错误，当前链表头结点为空！");
+            return;
+        }
+        int j = 1;
+        Node walker = head;
+        while(walker.getNext() != null && j < index){
+            walker = walker.getNext();
+            j++;
+        }
+        walker.setNext(walker.getNext().getNext());
     }
 
     public Node get(int index) {
         return null;
     }
 
-    public void insert(int index, int val) {
 
-    }
 
     public void replace(int index, int val) {
-
+        if (head == null) {
+            System.out.println("发生错误，当前链表头结点为空！");
+            return;
+        }
+        Node node = new Node();
+        node.setValue(val);
+        Node walker = head;
+        int j = 1;
+        while (walker.getNext() != node && j < index) {
+            // 只要walker的后一个节点不为空，就说明walker还没有移动到尾节点，继续向后移动
+            walker = walker.getNext();
+            j++;
+        }
+        walker.getNext().setValue(val);
     }
 
     public void print() {
@@ -72,10 +114,25 @@ public class LinkedListImpl implements LinkedList {
 
     public static void main(String[] args) {
         // main函数，在这里运行你的代码
+        Node head = new Node();
+        LinkedList list = new LinkedListImpl(head);
         // 完成上面的方法后，在这里尝试创建一个链表，验证你的代码：
         // 依次插入(add)三个值1，2，3
+        list.add(1);
+        list.add(2);
+        list.add(3);
+//        list.print();
+
         // 然后在第二个位置插入(insert)一个值4，打印结果应为1,4,2,3
-        // 删除(remove)第三个位置的值，打印结果应为：1,4,3
+        list.insert(2,4);
+//        list.print();
+
+        // 删除(remove)第三个位置的值2，打印结果应为：1,4,3
+        list.remove(3);
+//        list.print();
+
         // 替换(replace) 第一个位置的值为2，打印结果应为：2,4,3
+        list.replace(1,2);
+        list.print();
     }
 }
