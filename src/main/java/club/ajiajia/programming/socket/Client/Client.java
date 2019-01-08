@@ -9,17 +9,13 @@ public class Client {
     private String ip;
     private int port;
     private Socket socket;
-
-
     public Socket getSocket(){
         return socket;
     }
-
     public Client(String ip, int port){
         this.ip = ip;
         this.port = port;
     }
-
     public void init(){
         socket = new Socket();
         try {
@@ -29,7 +25,6 @@ public class Client {
             e.printStackTrace();
         }
     }
-
     public void say(String data){
         if (socket == null){
             System.out.println("连接不存在");
@@ -43,7 +38,6 @@ public class Client {
             e.printStackTrace();
         }
     }
-
     public void close(){
         if (socket == null){
             System.out.println("连接不存在");
@@ -55,11 +49,9 @@ public class Client {
         }
 
     }
-
     public static void main(String[] args){
         Client demoClient = new Client("127.0.0.1",8081);
         demoClient.init();
-
         Runnable listenThread = new ListenThread(demoClient.getSocket());
         new Thread(listenThread).start();
 
@@ -73,7 +65,5 @@ public class Client {
             demoClient.say(line);
         }
         demoClient.close();
-
     }
-
 }

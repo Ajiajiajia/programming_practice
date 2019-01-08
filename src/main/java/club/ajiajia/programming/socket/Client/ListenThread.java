@@ -7,11 +7,10 @@ import java.util.Scanner;
 //  用于 读取信息
 public class ListenThread implements Runnable
 {
+    private Socket socket;
     public  ListenThread(Socket socket){
         this.socket = socket;
     }
-
-    private Socket socket;
     public void run() {
         if(socket == null){
             System.out.println("连接出现异常");
@@ -21,9 +20,7 @@ public class ListenThread implements Runnable
             Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
-
-                System.out.println("来自商贩的响应：" + line);
-
+                System.out.println("来自Server的响应：" + line);
             }
         }catch (Exception e){
             e.printStackTrace();
