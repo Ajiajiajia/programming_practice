@@ -3,6 +3,10 @@ package club.ajiajia.programming.concurrent;
  * @author ajiajia
  */
 public class LockB implements Runnable{
+
+
+
+
     public void run() {
         try {
             System.out.println(" LockB 开始执行");

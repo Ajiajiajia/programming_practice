@@ -1,6 +1,6 @@
 package club.ajiajia.programming.datastructure.linkedlist;
 
-/**
+/**  jhhhjhjghggggkgygg
  * 基础链表 - 节点 (元素)
  * @author ajiajia
  */
