@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class Client {
     /**
      * 要连接到的服务端ip
-     * （变量名称要更有意义，能让人明白其意义）
      */
     private String serverIp;
 
@@ -76,11 +75,12 @@ public class Client {
         Client demoClient = new Client("127.0.0.1", 1119);
         // 初始化建立连接
         demoClient.init();
+
         // 启动监听线程
         Runnable listenThread = new ListenThread(demoClient.getSocket());
         new Thread(listenThread).start();
 
-        //scanner 处理的是命令行里面的输入 (不要使用行尾注释，注释都在代码上方另起一行)
+        //scanner 处理的是命令行里面的输入 (
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             //每按一次回车，就把刚才输入的一行保存到Line中

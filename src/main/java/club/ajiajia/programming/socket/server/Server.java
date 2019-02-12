@@ -1,9 +1,4 @@
 package club.ajiajia.programming.socket.server;
-
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -18,6 +13,7 @@ public class Server {
 
     /**
      * 线程池
+     * 创建一个固定大小的线程池。每当提交一个任务就创建一个工作线程，如果工作线程数量达到线程池初始的最大数，则将提交的任务存入到池队列中
      */
     private static final ExecutorService THREAD_POOL = Executors.newFixedThreadPool(50);
 
@@ -35,7 +31,6 @@ public class Server {
      * 当前连接的客户端数量
      */
     private int clientCnt;
-
 
     public Server(int port) {
         this.port = port;
@@ -69,9 +64,10 @@ public class Server {
             while ((socket = serverSocket.accept()) != null) {
                 System.out.println("与客户端 " + socket.getRemoteSocketAddress() + " 成功建立连接");
                 System.out.println("当前客户端连接数： " + (++clientCnt));
+
                 // 使用线程池优化处理
                 THREAD_POOL.submit(new ServerThread(socket));
-                // 如果不想用线程池，可以简单写成下面样子
+                // 如果不用线程池，可以简单写成下面样子
                 // new Thread(new ServerThread(socket)).start();
             }
 
