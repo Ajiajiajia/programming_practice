@@ -1,4 +1,4 @@
-package club.ajiajia.programming.week_4.tree.bubblesort;
+package club.ajiajia.programming.algorithm.bubblesort;
 
 import java.util.Arrays;
 

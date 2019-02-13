@@ -1,4 +1,4 @@
-package club.ajiajia.programming.week_4.tree.LinkList;
+package club.ajiajia.programming.algorithm.LinkList;
 
 import java.util.ArrayList;
 import java.util.Stack;

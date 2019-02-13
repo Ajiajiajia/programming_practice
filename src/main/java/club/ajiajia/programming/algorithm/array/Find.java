@@ -1,4 +1,4 @@
-package club.ajiajia.programming.week_4.tree.array;
+package club.ajiajia.programming.algorithm.array;
 /*
     Solution 1
  */

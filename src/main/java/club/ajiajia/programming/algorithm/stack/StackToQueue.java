@@ -1,4 +1,4 @@
-package club.ajiajia.programming.week_4.tree.stack;
+package club.ajiajia.programming.algorithm.stack;
 
 import java.util.Stack;
 
